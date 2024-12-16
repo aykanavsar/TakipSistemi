@@ -1,0 +1,12 @@
+﻿@model TakipSistemi.Models.Property
+
+<h2>Taşınmaz Sil</h2>
+
+<p>Bu taşınmazı silmek istediğinize emin misiniz?</p>
+<h4>@Model.PropertyName - @Model.City/@Model.District</h4>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="@Url.Action("Index", "Property")" class="btn btn-secondary">Geri</a>
+</form>

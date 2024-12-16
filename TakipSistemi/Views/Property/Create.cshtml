@@ -1,0 +1,123 @@
+﻿@model TakipSistemi.Models.Property
+
+<h2 class="text-center mb-4">Taşınmaz Ekle</h2>
+
+<form asp-action="Create" method="post" class="form-horizontal">
+    <!-- Genel Bilgiler -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Genel Bilgiler</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="CompanyName" class="control-label">Bağlı Olduğu Şirket</label>
+                @Html.DropDownListFor(m => m.CompanyName, (SelectList)ViewBag.Companies, "Şirket Seçin", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="PropertyType" class="control-label">Taşınmaz Tipi</label>
+                @Html.DropDownListFor(m => m.PropertyType, (SelectList)ViewBag.PropertyTypes, "Tip Seçin", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="PropertyName" class="control-label">Taşınmazın Adı</label>
+                <input type="text" id="PropertyName" name="PropertyName" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="City" class="control-label">İl</label>
+                @Html.DropDownListFor(m => m.City, (SelectList)ViewBag.Cities, "İl Seçin", new { @class = "form-control", @id = "CityDropdown" })
+            </div>
+            <div class="form-group">
+                <label for="District" class="control-label">İlçe</label>
+                @Html.DropDownListFor(m => m.District, (SelectList)ViewBag.Districts, "İlçe Seçin", new { @class = "form-control", @id = "DistrictDropdown" })
+            </div>
+            <div class="form-group">
+                <label for="Address" class="control-label">Adres</label>
+                <input type="text" id="Address" name="Address" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Sigorta Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Sigorta Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="InsuranceCompany" class="control-label">Sigorta Şirketi</label>
+                <input type="text" id="InsuranceCompany" name="InsuranceCompany" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="InsurancePrice" class="control-label">Sigorta Fiyatı</label>
+                <div class="input-group">
+                    <input type="number" id="InsurancePrice" name="InsurancePrice" class="form-control text-right" step="0.01" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InsuranceDate" class="control-label">Sigorta Tarihi</label>
+                <input type="date" id="InsuranceDate" name="InsuranceDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="InsuranceValidityMonths" class="control-label">Geçerlilik Süresi (Ay)</label>
+                <input type="number" id="InsuranceValidityMonths" name="InsuranceValidityMonths" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Kasko Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-white">
+            <h4 class="mb-0">Kasko Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="CascoCompany" class="control-label">Kasko Şirketi</label>
+                <input type="text" id="CascoCompany" name="CascoCompany" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="CascoPrice" class="control-label">Kasko Fiyatı</label>
+                <div class="input-group">
+                    <input type="number" id="CascoPrice" name="CascoPrice" class="form-control text-right" step="0.01" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CascoDate" class="control-label">Kasko Tarihi</label>
+                <input type="date" id="CascoDate" name="CascoDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="CascoValidityMonths" class="control-label">Kasko Geçerlilik Süresi (Ay)</label>
+                <input type="number" id="CascoValidityMonths" name="CascoValidityMonths" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Form İşlem Butonları -->
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a href="@Url.Action("Index", "Property")" class="btn btn-secondary">Geri</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#CityDropdown").change(function() {
+                var selectedCity = $(this).val();
+                $.getJSON('@Url.Action("GetDistricts", "Property")?city=' + selectedCity, function(data) {
+                    var districtDropdown = $("#DistrictDropdown");
+                    districtDropdown.empty();
+                    districtDropdown.append($('<option>').val("").text("İlçe Seçin"));
+                    $.each(data, function(index, value) {
+                        districtDropdown.append($('<option>').val(value).text(value));
+                    });
+                });
+            });
+        });
+    </script>
+}

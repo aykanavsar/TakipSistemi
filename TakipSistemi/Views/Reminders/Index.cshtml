@@ -1,0 +1,79 @@
+﻿@using TakipSistemi.Helpers
+@model List<TakipSistemi.Models.ReminderItem>
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Yaklaşan Süre Dolumları</h2>
+        </div>
+        <div class="card-body">
+            <!-- Filtreleme Formu -->
+            <form method="get" class="row mb-4">
+                <div class="col-md-5">
+                    <label for="filterType" class="form-label fw-bold">Tür:</label>
+                    <select name="filterType" class="form-select">
+                        <option value="All">Tümü</option>
+                        <option value="Sigorta">Sigorta</option>
+                        <option value="Kasko">Kasko</option>
+                        <option value="Muayene">Muayene</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label for="filterAsset" class="form-label fw-bold">Varlık Tipi:</label>
+                    <select name="filterAsset" class="form-select">
+                        <option value="All">Tümü</option>
+                        <option value="Araç">Araç</option>
+                        <option value="Taşınmaz">Taşınmaz</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100">Filtrele</button>
+                </div>
+            </form>
+
+            <!-- Veri Tablosu -->
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Şirket</th>
+                            <th>Varlık Adı</th>
+                            <th>Varlık Tipi</th>
+                            <th>Tür</th>
+                            <th>Başlangıç Tarihi</th>
+                            <th>Geçerlilik (Ay)</th>
+                            <th>Bitiş Tarihi</th>
+                            <th>Kalan Gün</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Company</td>
+                                <td>@item.AssetName</td>
+                                <td>@item.AssetType</td>
+                                <td>@item.Type</td>
+                                <td>@item.StartDate.ToShortDateString()</td>
+                                <td>@item.ValidityMonths</td>
+                                <td>@item.EndDate.ToShortDateString()</td>
+                                <td>
+                                    <span class="badge @(item.RemainingDays <= 10 ? "bg-danger" : "bg-warning")">
+                                        @item.RemainingDays Gün
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("UpdateRecord", "Reminders", new { id = item.Id, assetType = Normalizer.NormalizeString(item.AssetType), type = Normalizer.NormalizeString(item.Type) })"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Güncelle
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

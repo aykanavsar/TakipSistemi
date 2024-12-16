@@ -1,0 +1,62 @@
+﻿@model List<TakipSistemi.Models.Property>
+
+<h2 class="text-center mb-4 text-muted">Taşınmaz Listesi</h2>
+
+<div class="table-responsive shadow-sm rounded">
+    <table class="table table-hover table-bordered">
+        <thead style="background-color: #00264d; color: #ffffff;">
+            <tr>
+                <th class="text-center" style="width: 5%;">#</th>
+                <th class="text-center" style="width: 25%;">Şirket</th>
+                <th class="text-center" style="width: 20%;">Adı</th>
+                <th class="text-center" style="width: 20%;">İl</th>
+                <th class="text-center" style="width: 20%;">İlçe</th>
+                <th class="text-center" style="width: 10%;">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var prop in Model)
+                {
+                    <tr style="transition: background-color 0.3s; background-color: #f9f9f9;"
+                        onmouseover="this.style.backgroundColor='#e6f2ff';"
+                        onmouseout="this.style.backgroundColor='#f9f9f9';">
+                        <td class="text-center font-weight-bold">@prop.Id</td>
+                        <td>@prop.CompanyName</td>
+                        <td>@prop.PropertyName</td>
+                        <td>@prop.City</td>
+                        <td>@prop.District</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Details", "Property", new { id = prop.Id })"
+                               class="btn btn-outline-primary btn-sm mb-1" title="Bilgileri Gör">
+                                <i class="fas fa-eye"></i> Gör
+                            </a>
+                            <a href="@Url.Action("Edit", "Property", new { id = prop.Id })"
+                               class="btn btn-outline-warning btn-sm mb-1" title="Düzenle">
+                                <i class="fas fa-edit"></i> Düzenle
+                            </a>
+                            <a href="@Url.Action("Delete", "Property", new { id = prop.Id })"
+                               class="btn btn-outline-danger btn-sm mb-1" title="Sil">
+                                <i class="fas fa-trash-alt"></i> Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">Kayıtlı taşınmaz bulunmamaktadır.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "Property")"
+       class="btn btn-light btn-lg shadow-sm" style="color: #4CAF50; border: 2px solid #4CAF50;">
+        <i class="fas fa-plus"></i> Yeni Taşınmaz Ekle
+    </a>
+</div>

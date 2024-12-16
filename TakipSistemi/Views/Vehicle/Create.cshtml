@@ -1,0 +1,151 @@
+﻿@model TakipSistemi.Models.Vehicle
+
+<h2 class="text-center mb-4">Araç Ekle</h2>
+
+<form asp-action="Create" method="post" class="form-horizontal">
+    <!-- Araç Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Araç Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="CompanyName" class="control-label">Bağlı Olduğu Şirket</label>
+                @Html.DropDownListFor(model => model.CompanyName, ViewBag.Companies as SelectList, "Şirket Seçin", new { @class = "form-control", @id = "CompanyName" })
+            </div>
+            <div class="form-group">
+                <label for="Brand" class="control-label">Marka</label>
+                <input type="text" id="Brand" name="Brand" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Model" class="control-label">Model</label>
+                <input type="text" id="Model" name="Model" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="ModelYear" class="control-label">Model Yılı</label>
+                <input type="number" id="ModelYear" name="ModelYear" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="ChassisNumber" class="control-label">Şasi Numarası</label>
+                <input type="text" id="ChassisNumber" name="ChassisNumber" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Plate" class="control-label">Plaka</label>
+                <input type="text" id="Plate" name="Plate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="FuelType" class="control-label">Yakıt Türü</label>
+                <select id="FuelType" name="FuelType" class="form-control">
+                    <option value="Benzin">Benzin</option>
+                    <option value="Dizel">Dizel</option>
+                    <option value="Elektrik">Elektrik</option>
+                    <option value="Hibrit">Hibrit</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tahsis Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Tahsis Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="AssignedDepartment" class="control-label">Tahsis Edilen Departman</label>
+                <input type="text" id="AssignedDepartment" name="AssignedDepartment" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="AssignedPerson" class="control-label">Tahsis Edilen Kişi</label>
+                <input type="text" id="AssignedPerson" name="AssignedPerson" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="AssignedPersonEmail" class="control-label">İlgili Kişi Maili</label>
+                <input type="email" id="AssignedPersonEmail" name="AssignedPersonEmail" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Sigorta Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Sigorta Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="InsuranceCompany" class="control-label">Sigorta Firma</label>
+                <input type="text" id="InsuranceCompany" name="InsuranceCompany" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="InsurancePrice" class="control-label">Sigorta Fiyatı</label>
+                <div class="input-group">
+                    <input type="number" id="InsurancePrice" name="InsurancePrice" class="form-control text-right" step="0.01" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InsuranceDate" class="control-label">Sigorta Tarihi</label>
+                <input type="date" id="InsuranceDate" name="InsuranceDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="InsuranceValidityMonths" class="control-label">Sigorta Geçerlilik Süresi (Ay)</label>
+                <input type="number" id="InsuranceValidityMonths" name="InsuranceValidityMonths" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Kasko Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-white">
+            <h4 class="mb-0">Kasko Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="CascoCompany" class="control-label">Kasko Firma</label>
+                <input type="text" id="CascoCompany" name="CascoCompany" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="CascoPrice" class="control-label">Kasko Fiyatı</label>
+                <div class="input-group">
+                    <input type="number" id="CascoPrice" name="CascoPrice" class="form-control text-right" step="0.01" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">₺</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CascoDate" class="control-label">Kasko Tarihi</label>
+                <input type="date" id="CascoDate" name="CascoDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="CascoValidityMonths" class="control-label">Kasko Geçerlilik Süresi (Ay)</label>
+                <input type="number" id="CascoValidityMonths" name="CascoValidityMonths" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Muayene Bilgileri -->
+    <div class="card mb-4">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Muayene Bilgileri</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="InspectionDate" class="control-label">Muayene Tarihi</label>
+                <input type="date" id="InspectionDate" name="InspectionDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="InspectionValidityMonths" class="control-label">Muayene Geçerlilik Süresi (Ay)</label>
+                <input type="number" id="InspectionValidityMonths" name="InspectionValidityMonths" class="form-control" required />
+            </div>
+        </div>
+    </div>
+
+    <!-- Form İşlem Butonları -->
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a href="@Url.Action("Index", "Vehicle")" class="btn btn-secondary">Geri</a>
+    </div>
+</form>

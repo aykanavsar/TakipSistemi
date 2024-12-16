@@ -1,0 +1,91 @@
+﻿@model TakipSistemi.Models.Vehicle
+
+<h2>Araç Detayları</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Şirket</th>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <th>Marka</th>
+        <td>@Model.Brand</td>
+    </tr>
+    <tr>
+        <th>Model</th>
+        <td>@Model.Model</td>
+    </tr>
+    <tr>
+        <th>Model Yılı</th>
+        <td>@Model.ModelYear</td>
+    </tr>
+    <tr>
+        <th>Şasi Numarası</th>
+        <td>@Model.ChassisNumber</td>
+    </tr>
+    <tr>
+        <th>Plaka</th>
+        <td>@Model.Plate</td>
+    </tr>
+    <tr>
+        <th>Yakıt Türü</th>
+        <td>@Model.FuelType</td>
+    </tr>
+    <tr>
+        <th>Tahsis Edilen Departman</th>
+        <td>@Model.AssignedDepartment</td>
+    </tr>
+    <tr>
+        <th>Tahsis Edilen Kişi</th>
+        <td>@Model.AssignedPerson</td>
+    </tr>
+    <tr>
+        <th>İlgili Kişi Maili</th>
+        <td>@Model.AssignedPersonEmail</td>
+    </tr>
+    <tr><th colspan="2" class="text-center">Sigorta Bilgileri</th></tr>
+    <tr>
+        <th>Sigorta Firma</th>
+        <td>@Model.InsuranceCompany</td>
+    </tr>
+    <tr>
+        <th>Sigorta Fiyatı</th>
+        <td>@Model.InsurancePrice</td>
+    </tr>
+    <tr>
+        <th>Sigorta Tarihi</th>
+        <td>@Model.InsuranceDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Sigorta Geçerlilik Süresi (Ay)</th>
+        <td>@Model.InsuranceValidityMonths</td>
+    </tr>
+    <tr><th colspan="2" class="text-center">Kasko Bilgileri</th></tr>
+    <tr>
+        <th>Kasko Firma</th>
+        <td>@Model.CascoCompany</td>
+    </tr>
+    <tr>
+        <th>Kasko Fiyatı</th>
+        <td>@Model.CascoPrice</td>
+    </tr>
+    <tr>
+        <th>Kasko Tarihi</th>
+        <td>@Model.CascoDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Kasko Geçerlilik Süresi (Ay)</th>
+        <td>@Model.CascoValidityMonths</td>
+    </tr>
+    <tr><th colspan="2" class="text-center">Muayene Bilgileri</th></tr>
+    <tr>
+        <th>Muayene Tarihi</th>
+        <td>@Model.InspectionDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Muayene Geçerlilik Süresi (Ay)</th>
+        <td>@Model.InspectionValidityMonths</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("Index", "Vehicle")" class="btn btn-secondary">Geri</a>

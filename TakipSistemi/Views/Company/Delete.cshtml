@@ -1,0 +1,12 @@
+﻿@model TakipSistemi.Models.Company
+
+<h2>Şirket Sil</h2>
+
+<p>Bu şirketi silmek istediğinize emin misiniz?</p>
+<h4>@Model.Name</h4>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="@Url.Action("Index", "Company")" class="btn btn-secondary">Geri</a>
+</form>

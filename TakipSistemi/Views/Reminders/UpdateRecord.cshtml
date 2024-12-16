@@ -1,0 +1,53 @@
+﻿@model TakipSistemi.Controllers.UpdateViewModel
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Geçerlilik Güncelle</h2>
+        </div>
+        <div class="card-body">
+            <h5 class="text-muted mb-4">
+                @Model.AssetType - <span class="fw-bold">@Model.AssetName</span> - @Model.Type
+            </h5>
+
+            <form asp-action="UpdateRecord" asp-controller="Reminders" method="post">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="AssetType" value="@Model.AssetType" />
+                <input type="hidden" name="Type" value="@Model.Type" />
+
+                <!-- Yeni Tarih Alanı -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="NewDate" class="form-label fw-bold">Yeni Başlangıç Tarihi</label>
+                        <input type="date" name="NewDate" id="NewDate" class="form-control" required />
+                    </div>
+                </div>
+
+                <!-- Yeni Fiyat ve Geçerlilik Süresi -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="NewPrice" class="form-label fw-bold">Yeni Fiyat</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₺</span>
+                            <input type="number" step="0.01" name="NewPrice" id="NewPrice" class="form-control" placeholder="Örn: 500.00" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="NewValidityMonths" class="form-label fw-bold">Yeni Geçerlilik Süresi (Ay)</label>
+                        <input type="number" name="NewValidityMonths" id="NewValidityMonths" class="form-control" placeholder="Örn: 12" required />
+                    </div>
+                </div>
+
+                <!-- Butonlar -->
+                <div class="d-flex justify-content-end gap-3">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Kaydet
+                    </button>
+                    <a href="@Url.Action("Index", "Reminders")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> İptal
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model List<TakipSistemi.Models.Company>
+
+<h2>Şirket Listesi</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Şirket Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td>@company.Id</td>
+                <td>@company.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Company", new { id = company.Id })" class="btn btn-warning">Düzenle</a>
+                    <a href="@Url.Action("Delete", "Company", new { id = company.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Company")" class="btn btn-primary">Şirket Ekle</a>

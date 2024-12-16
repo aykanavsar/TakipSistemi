@@ -1,0 +1,13 @@
+﻿@model TakipSistemi.Models.Company
+
+<h2>Şirket Düzenle</h2>
+
+<form asp-action="Edit" method="post" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label for="Name" class="control-label">Şirket Adı</label>
+        <input type="text" id="Name" name="Name" value="@Model.Name" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="@Url.Action("Index", "Company")" class="btn btn-secondary">Geri</a>
+</form>

@@ -1,0 +1,12 @@
+﻿@model TakipSistemi.Models.Vehicle
+
+<h2>Araç Sil</h2>
+
+<p>Bu aracı silmek istediğinize emin misiniz?</p>
+<h4>@Model.Brand - @Model.Plate</h4>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a href="@Url.Action("Index", "Vehicle")" class="btn btn-secondary">Geri</a>
+</form>

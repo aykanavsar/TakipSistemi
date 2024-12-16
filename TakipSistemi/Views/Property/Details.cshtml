@@ -1,0 +1,64 @@
+﻿@model TakipSistemi.Models.Property
+
+<h2>Taşınmaz Detayları</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Şirket:</th>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <th>Taşınmaz Tipi:</th>
+        <td>@Model.PropertyType</td>
+    </tr>
+    <tr>
+        <th>Taşınmazın Adı:</th>
+        <td>@Model.PropertyName</td>
+    </tr>
+    <tr>
+        <th>İl / İlçe:</th>
+        <td>@Model.City / @Model.District</td>
+    </tr>
+    <tr>
+        <th>Adres:</th>
+        <td>@Model.Address</td>
+    </tr>
+
+    <tr><th colspan="2">Sigorta Bilgileri</th></tr>
+    <tr>
+        <th>Sigorta Şirketi:</th>
+        <td>@Model.InsuranceCompany</td>
+    </tr>
+    <tr>
+        <th>Sigorta Fiyatı:</th>
+        <td>@Model.InsurancePrice</td>
+    </tr>
+    <tr>
+        <th>Sigorta Tarihi:</th>
+        <td>@Model.InsuranceDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Sigorta Geçerlilik Süresi (Gün):</th>
+        <td>@Model.InsuranceValidityMonths</td>
+    </tr>
+
+    <tr><th colspan="2">Kasko Bilgileri</th></tr>
+    <tr>
+        <th>Kasko Şirketi:</th>
+        <td>@Model.CascoCompany</td>
+    </tr>
+    <tr>
+        <th>Kasko Fiyatı:</th>
+        <td>@Model.CascoPrice</td>
+    </tr>
+    <tr>
+        <th>Kasko Tarihi:</th>
+        <td>@Model.CascoDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Kasko Geçerlilik Süresi (Gün):</th>
+        <td>@Model.CascoValidityMonths</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("Index", "Property")" class="btn btn-secondary">Geri</a>
